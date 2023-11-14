@@ -13,4 +13,8 @@ router.get("/state", simCtrl.getState)
 
 router.get("/execute", simCtrl.execute)
 
+router.post("/managerPatients", simCtrl.postManagerPatients)
+
+router.get("/managerPatients", simCtrl.getManagerPatients)
+
 module.exports = router;

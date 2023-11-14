@@ -2,6 +2,7 @@ const simCtrl = {};
 const config = require("../config/config.json");
 
 var state = {};
+var managerPatients = {}
 
 simCtrl.receive = (req, res) => {
   res.status(200).send({ message: "Tareas recibidas simulador." });
@@ -65,4 +66,21 @@ simCtrl.execute = (req, res) => {
 
 	proceso.unref();
 };
+
+simCtrl.postManagerPatients = (req, res) => {
+  if (!req.body) {
+    res.status(400).send({ message: "Content can not be empty!" });
+    return;
+  }
+  managerPatients = req.body;
+  res.status(200).send({ message: "Ok" });
+};
+
+simCtrl.getManagerPatients = (req, res) => {
+  const managerPatientsAux = managerPatients;
+  managerPatients = {};
+  res.status(200).send(managerPatientsAux);
+};
+
+
 module.exports = simCtrl;
