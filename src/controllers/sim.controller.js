@@ -30,29 +30,19 @@ simCtrl.getState = (req, res) => {
 
 simCtrl.execute = (req, res) => {
   const { spawn  } = require("child_process");
+	const mode = req.params.mode
 
-  //process.chdir("../buzon-sim");
 	process.chdir("../rl");
 
-	const comandoRL = "python3";
-	const argsRL = ["taskRL.py"];
+	const comandoMain = "python3";
+	const argsMain = ["main.py", mode];
 
-	const comandoSim = "python3";
-	const argsSim = ["taskSim.py"];
-
-	const procesoRL = spawn(comandoRL, argsRL, {
+	const procesoMain = spawn(comandoMain, argsMain, {
 		detached: true,
 		stdio: "ignore"
 	});
 
-	procesoRL.unref();
-
-	const procesoSim = spawn(comandoSim, argsSim, {
-		detached: true,
-		stdio: "ignore"
-	});
-
-	procesoSim.unref();
+	procesoMain.unref();
 
 	process.chdir("../buzon-sim");
 
@@ -65,6 +55,7 @@ simCtrl.execute = (req, res) => {
 	});
 
 	proceso.unref();
+	res.status(200).send({ message: "Ok" });
 };
 
 simCtrl.postManagerPatients = (req, res) => {
