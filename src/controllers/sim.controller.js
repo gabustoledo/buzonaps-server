@@ -1,5 +1,10 @@
 const simCtrl = {};
-const config = require("../config/config.json");
+var config = require("../config/config.json");
+const config_1 = require("../config/config_1.json");
+const config_2 = require("../config/config_2.json");
+const config_3 = require("../config/config_3.json");
+const config_4 = require("../config/config_4.json");
+var ocupado = false
 
 var state = {};
 var managerPatients = {}
@@ -29,13 +34,32 @@ simCtrl.getState = (req, res) => {
 };
 
 simCtrl.execute = (req, res) => {
+  ocupado = true
   const { spawn  } = require("child_process");
 	const mode = req.params.mode
+	const conf = parseInt(req.params.conf, 10);
+
+  if (conf == 1){
+    console.log("config 1")
+    config = config_1
+  }
+  else if (conf == 2){
+    console.log("config 2")
+    config = config_2
+  }
+  else if (conf == 3){
+    console.log("config 3")
+    config = config_3
+  }
+  else if (conf == 4){
+    console.log("config 4")
+    config = config_4
+  }
 
 	process.chdir("../rl");
 
 	const comandoMain = "python3";
-	const argsMain = ["main.py", mode];
+	const argsMain = ["main.py", mode, conf];
 
 	const procesoMain = spawn(comandoMain, argsMain, {
 		detached: true,
@@ -71,6 +95,15 @@ simCtrl.getManagerPatients = (req, res) => {
   const managerPatientsAux = managerPatients;
   managerPatients = {};
   res.status(200).send(managerPatientsAux);
+};
+
+simCtrl.desocupado = (req, res) => {
+  ocupado = false
+  res.status(200).send(ocupado);
+};
+
+simCtrl.ocupado = (req, res) => {
+  res.status(200).send(ocupado);
 };
 
 

@@ -1,6 +1,7 @@
 const rlCtrl = {};
 var task = {}
 var rewards = []
+var count = 0
 
 rlCtrl.receive = (req, res) => {
 
@@ -13,7 +14,8 @@ rlCtrl.postTask = (req, res) => {
 		return;
 	}
 	task = req.body
-	console.log("tarea")
+	console.log("tarea " + count)
+	count += 1
 	res.status(200).send({ message: "Ok" });
 }
 
