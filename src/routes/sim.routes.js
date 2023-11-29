@@ -21,4 +21,8 @@ router.get("/desocupado", simCtrl.desocupado)
 
 router.get("/ocupado", simCtrl.ocupado)
 
+router.get("/noautoriza/:id", simCtrl.no_autoriza)
+
+router.get("/noautoriza", simCtrl.no_autoriza_get)
+
 module.exports = router;

@@ -5,6 +5,7 @@ const config_2 = require("../config/config_2.json");
 const config_3 = require("../config/config_3.json");
 const config_4 = require("../config/config_4.json");
 var ocupado = false
+var no_autoriza = []
 
 var state = {};
 var managerPatients = {}
@@ -99,11 +100,23 @@ simCtrl.getManagerPatients = (req, res) => {
 
 simCtrl.desocupado = (req, res) => {
   ocupado = false
+  no_autoriza = []
   res.status(200).send(ocupado);
 };
 
 simCtrl.ocupado = (req, res) => {
   res.status(200).send(ocupado);
+};
+
+simCtrl.no_autoriza = (req, res) => {
+	const id = req.params.id
+  no_autoriza.push(id)
+  console.log(no_autoriza)
+  res.status(200).send({ message: "Ok" });
+};
+
+simCtrl.no_autoriza_get = (req, res) => {
+  res.status(200).send(no_autoriza);
 };
 
 
