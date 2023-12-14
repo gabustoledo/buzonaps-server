@@ -11,7 +11,7 @@ router.post("/state", simCtrl.postState)
 
 router.get("/state", simCtrl.getState)
 
-router.get("/execute/:mode/:conf", simCtrl.execute)
+router.get("/execute/:mode/:conf/:time", simCtrl.execute)
 
 router.post("/managerPatients", simCtrl.postManagerPatients)
 

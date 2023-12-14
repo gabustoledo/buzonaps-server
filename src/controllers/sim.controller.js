@@ -39,6 +39,7 @@ simCtrl.execute = (req, res) => {
   const { spawn  } = require("child_process");
 	const mode = req.params.mode
 	const conf = parseInt(req.params.conf, 10);
+	const time = parseInt(req.params.time, 10);
 
   if (conf == 1){
     console.log("config 1")
@@ -57,10 +58,10 @@ simCtrl.execute = (req, res) => {
     config = config_4
   }
 
-	process.chdir("../rl");
+	process.chdir("../rl_1.0");
 
 	const comandoMain = "python3";
-	const argsMain = ["main.py", mode, conf];
+	const argsMain = ["main.py", mode, conf, time];
 
 	const procesoMain = spawn(comandoMain, argsMain, {
 		detached: true,
@@ -69,7 +70,7 @@ simCtrl.execute = (req, res) => {
 
 	procesoMain.unref();
 
-	process.chdir("../buzon-sim");
+	process.chdir("../buzon-sim_1.0");
 
 	const comando = "bash";
 	const args = ["run.sh"];
