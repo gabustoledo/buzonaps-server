@@ -25,4 +25,8 @@ router.get("/noautoriza/:id", simCtrl.no_autoriza)
 
 router.get("/noautoriza", simCtrl.no_autoriza_get)
 
+router.get("/pendiente/:id_patient/:id_manager/:process", simCtrl.post_pendiente)
+
+router.get("/pendiente", simCtrl.get_pendiente)
+
 module.exports = router;

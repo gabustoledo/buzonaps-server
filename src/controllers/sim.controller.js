@@ -6,6 +6,7 @@ const config_3 = require("../config/config_3.json");
 const config_4 = require("../config/config_4.json");
 var ocupado = false
 var no_autoriza = []
+var pendiente = []
 
 var state = {};
 var managerPatients = {}
@@ -118,6 +119,28 @@ simCtrl.no_autoriza = (req, res) => {
 
 simCtrl.no_autoriza_get = (req, res) => {
   res.status(200).send(no_autoriza);
+};
+
+simCtrl.post_pendiente = (req, res) => {
+  const id_patient = req.params.id_patient
+  const id_manager = req.params.id_manager
+  const process = req.params.process
+
+  aux = {
+    id_patient: id_patient,
+    id_manager: id_manager,
+    process: process
+  }
+
+  pendiente.push(aux)
+
+  res.status(200).send({ message: "Ok" });
+};
+
+simCtrl.get_pendiente = (req, res) => {
+  aux_pendiente = pendiente
+  pendiente = []
+  res.status(200).send(aux_pendiente);
 };
 
 
