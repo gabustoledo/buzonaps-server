@@ -59,7 +59,7 @@ simCtrl.execute = (req, res) => {
     config = config_4
   }
 
-	process.chdir("../rl_1.0");
+	process.chdir("../buzonaps-rl");
 
 	const comandoMain = "python3";
 	const argsMain = ["main.py", mode, conf, time];
@@ -71,7 +71,7 @@ simCtrl.execute = (req, res) => {
 
 	procesoMain.unref();
 
-	process.chdir("../buzon-sim_1.0");
+	process.chdir("../buzonaps-sim");
 
 	const comando = "bash";
 	const args = ["run.sh"];
